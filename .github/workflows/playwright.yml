@@ -45,6 +45,16 @@ jobs:
         path: blob-report
         retention-days: 1
 
+    - name: Download all allure-results
+      uses: actions/download-artifact@v4
+      with:
+        pattern: allure-results-*
+        path: all-allure-results
+        merge-multiple: true
+
+    - name: Generate Allure Report
+      run: npx allure-commandline generate all-allure-results
+
     - name: Upload combined Allure report
       uses: actions/upload-artifact@v4
       with:
