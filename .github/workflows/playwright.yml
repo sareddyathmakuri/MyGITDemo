@@ -25,7 +25,9 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
     - name: install Allure reports
-      run: npm install --save-dev allure
+      run: |
+        npm install --save-dev allure
+        npm install -D allure-playwright allure-commandline
 
     - name: Run Playwright tests
       run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
