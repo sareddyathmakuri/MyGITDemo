@@ -92,21 +92,3 @@ jobs:
         name: allure-report
         path: allure-report/
         retention-days: 30
-
-    - name: Download blob reports from GitHub Actions Artifacts
-      uses: actions/download-artifact@v5
-      with:
-        path: all-blob-reports
-        pattern: blob-report-*
-        merge-multiple: true
-
-    - name: Merge into HTML Report
-      run: npx playwright merge-reports --reporter html ./all-blob-reports
-      continue-on-error: true
-
-    - name: Upload HTML report
-      uses: actions/upload-artifact@v5
-      with:
-        name: upload-html-report--attempt-${{ github.run_attempt }}
-        path: playwright-report
-        retention-days: 14
